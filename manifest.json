@@ -1,0 +1,9 @@
+{
+  "name": "CueCompass",
+  "short_name": "CueCompass",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07101d",
+  "theme_color": "#0b1220",
+  "description": "Find and post pool tournaments."
+}

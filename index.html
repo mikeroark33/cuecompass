@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>CueCompass</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div><div class="brand">CueCompass</div><div class="tag">Find your next tournament.</div></div>
+  <button id="authBtn" class="ghost">Sign In</button>
+</header>
+
+<main>
+  <section id="home" class="view active">
+    <div class="hero card">
+      <div class="eyebrow">TOURNAMENT FINDER</div>
+      <h1>Where are you playing next?</h1>
+      <p>Find pool tournaments nearby or search a destination before you travel.</p>
+      <button data-go="search" class="primary">Find Tournaments</button>
+    </div>
+    <h2>Upcoming tournaments</h2>
+    <div id="homeEvents" class="stack"><div class="muted">Loading live tournaments…</div></div>
+  </section>
+
+  <section id="search" class="view">
+    <h1>Search</h1>
+    <div class="card">
+      <label>City, state or ZIP<input id="searchText" placeholder="Elizabethtown, KY"></label>
+      <label>Game<select id="gameFilter"><option value="">Any game</option><option>8-Ball</option><option>9-Ball</option><option>10-Ball</option><option>One Pocket</option><option>Banks</option></select></label>
+      <label>Radius<select id="radius"><option>10 miles</option><option selected>25 miles</option><option>50 miles</option><option>100 miles</option><option>250 miles</option></select></label>
+      <button id="searchBtn" class="primary">Search</button>
+      <div class="note">Location-radius searching will switch on after venue coordinates/geocoding are added. For now, city/state/game filtering works.</div>
+    </div>
+    <div id="searchResults" class="stack"></div>
+  </section>
+
+  <section id="post" class="view">
+    <h1>Post Tournament</h1>
+    <div id="postGate" class="card">
+      <p>Sign in with your Tournament Director account to publish an event.</p>
+      <button id="postSignIn" class="primary">Sign In</button>
+    </div>
+    <form id="postForm" class="card hidden">
+      <label>Tournament name<input name="title" required placeholder="Race To Your Rank"></label>
+      <label>Venue<select name="venue_id" id="venueSelect" required></select></label>
+      <div class="two">
+        <label>Game<select name="game" required><option>8-Ball</option><option selected>9-Ball</option><option>10-Ball</option><option>One Pocket</option><option>Banks</option></select></label>
+        <label>Entry fee<input name="entry_fee" type="number" min="0" step="1" placeholder="20"></label>
+      </div>
+      <label>Start date & time<input name="start_at" type="datetime-local" required></label>
+      <label>Repeats<select name="recurrence"><option value="">One time</option><option value="FREQ=WEEKLY">Every week</option></select></label>
+      <label>Table size<input name="table_size" placeholder="7-foot Diamond"></label>
+      <label>Format<input name="format" placeholder="Fargo rated — Race to your rank"></label>
+      <label>Details<textarea name="details" rows="4" placeholder="Winner break. Rack your own racks."></textarea></label>
+      <label>Contact information<textarea name="contact_text" rows="3" placeholder="Tournament director name and contact"></textarea></label>
+      <button class="primary" type="submit">Publish Tournament</button>
+      <div id="postMsg" class="note"></div>
+    </form>
+  </section>
+
+  <section id="profile" class="view">
+    <h1>Profile</h1>
+    <div id="profileBox" class="card"><p class="muted">Sign in to view your profile.</p></div>
+  </section>
+</main>
+
+<nav>
+  <button data-go="home" class="nav active">⌂<span>Home</span></button>
+  <button data-go="search" class="nav">⌕<span>Search</span></button>
+  <button data-go="post" class="nav plus">＋<span>Post</span></button>
+  <button data-go="profile" class="nav">◎<span>Profile</span></button>
+</nav>
+
+<dialog id="authDialog">
+  <form method="dialog" class="dialog-card" id="loginForm">
+    <div class="dialog-head"><h2>Sign in</h2><button value="cancel" class="x">×</button></div>
+    <label>Email<input id="email" type="email" required autocomplete="email"></label>
+    <label>Password<input id="password" type="password" required autocomplete="current-password"></label>
+    <button id="loginBtn" type="button" class="primary">Sign In</button>
+    <div id="loginMsg" class="note"></div>
+  </form>
+</dialog>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
